@@ -1,8 +1,13 @@
 const express = require('express');
+
 const cors = require('cors');
 
+
+const db = require('./mysql');
 const restaurantsRouter = require('./routers/restaurants')
+const membersRouter = require('./routers/members');
 const logger = require('./middleware/logger');
+
 
 const app = express();
 
@@ -18,6 +23,7 @@ app.use(logger);
 
 // Router
 app.use('/apis/restaurants', restaurantsRouter);
+app.use('/apis/member', membersRouter);
 
 app.get('/', (reg, res) => {
     res.send('Hello World')
