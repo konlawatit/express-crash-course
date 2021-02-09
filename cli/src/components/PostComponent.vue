@@ -1,11 +1,13 @@
 <template>
 	<div class="container">
+		
+		<a href="#" onclick="signOut();">Sign out</a>
 		<!-- {{posts}} -->
 		{{ error }}
 		<div>
 			<ul>
 				<li v-for="post in posts" v-bind:key="post.id">
-          <img :src="post.imageURL" alt="">
+					<img :src="post.imageURL" alt="" />
 					{{ post.name }}
 				</li>
 			</ul>
@@ -31,10 +33,9 @@ export default {
 			this.error = err.message;
 		}
 	},
+
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
+<style scoped></style>
