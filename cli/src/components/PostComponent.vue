@@ -1,7 +1,5 @@
 <template>
 	<div class="container">
-		
-		<a href="#" onclick="signOut();">Sign out</a>
 		<!-- {{posts}} -->
 		{{ error }}
 		<div>

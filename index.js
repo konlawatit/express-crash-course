@@ -2,6 +2,9 @@ const express = require('express');
 
 const cors = require('cors');
 
+const app = express();
+
+app.use(cors());
 
 const db = require('./mysql');
 const restaurantsRouter = require('./routers/restaurants')
@@ -9,10 +12,10 @@ const membersRouter = require('./routers/members');
 const logger = require('./middleware/logger');
 
 
-const app = express();
+
 
 //Use cors to solve : No 'Access-Control-Allow-Origin'
-app.use(cors());
+
 
 //middleware when the user request will make read the body
 app.use(express.json());
