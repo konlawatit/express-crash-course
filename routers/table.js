@@ -12,27 +12,37 @@ router.post('/createTable', (req, res) => {
         //     res.send(result)
         // })
         let commandSQL = req.body.sql
+        console.log(commandSQL)
         let stack = []
-        console.log(commandSQL.slice(-1))
-        let commandSQL_array = commandSQL.slice(-1) !== ';' ? commandSQL.split(';') : commandSQL.substring(0,commandSQL.length-1).split(';')
-        commandSQL_array.forEach((sql,index) => {
-            console.log(index)
-            if(sql) {
+        let commandSQL_array = commandSQL.slice(-1) !== ';' ? commandSQL.split(';') : commandSQL.substring(0, commandSQL.length - 1).split(';')
+        commandSQL_array.forEach((sql, index) => {
+            console.log("index: " + index)
+            if (sql) {
                 db.query(sql, (err, result) => {
-                    if (err) res.send(err)
-                    stack.push(result)
-                    if (index === commandSQL_array.length-1) { //ถ้าถึงคำสั่งสุดท้ายถึงจะ res
-                        res.send(stack)
+                    if (err) {
+                        res.status(400).json({
+                            status: 'error',
+                            error: err,
+                        });
+                    } else {
+                        stack.push(result)
+                        if (index === commandSQL_array.length - 1) { //ถ้าถึงคำสั่งสุดท้ายถึงจะ res
+                            if (stack) {
+                                res.status(200).json(stack)
+                            } else {
+                                return res.status(400).json({
+                                    status: 'error',
+                                    error: 'stack cannot be empty',
+                                });
+                            }
+                        }
                     }
                 })
             }
         })
-        //res.send('pass')
-
-
     } catch (err) {
-        console.log(err)
-        res.send("err")
+        // /console.log(err)
+        res.status(404).send(err)
     }
 
 })

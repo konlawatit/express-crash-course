@@ -2,17 +2,20 @@
   <div id="app">
     
     <img alt="Vue logo" src="./assets/logo.png">
-    <PostComponent msg="Welcome to Your Vue.js App"/>
+    <!-- <PostComponent msg="Welcome to Your Vue.js App"/> -->
+    <tableComponent msg="My table"/>
   </div>
 </template>
 
 <script>
-import PostComponent from './components/PostComponent.vue'
+// import PostComponent from './components/PostComponent.vue'
+import tableComponent from './components/tableComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    PostComponent
+    // PostComponent
+    tableComponent
   }
 }
 </script>

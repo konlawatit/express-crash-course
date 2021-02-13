@@ -1,10 +1,10 @@
 const axios = require('axios');
-const url = 'http://localhost:3000/'
+const url = 'http://localhost:3000'
 
 class PostService {
     //Get restaurants
     static getPost() {
-        const res = axios.get(url + 'apis/restaurants/').then((data) => {
+        const res = axios.get(url + '/apis/table/createTable').then((data) => {
             console.log(data.data)
             return data.data;
         })
